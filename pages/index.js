@@ -1,16 +1,43 @@
 import Head from 'next/head'
 import { connectToDatabase } from '../util/mongodb'
+import BasicTable from './BasicTable'
+import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function Home({ isConnected }) {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+/*        <title>Create Next App</title>
+        <link rel="icon" href="/favicon.ico" />*/
+            <Navbar bg="light" expand="lg">
+              <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                  <Nav.Link href="#home">Home</Nav.Link>
+                  <Nav.Link href="#link">Link</Nav.Link>
+{/*                  <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  </NavDropdown>*/}
+                </Nav>
+{/*                <Form inline>
+                  <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                  <Button variant="outline-success">Search</Button>
+                </Form>*/}
+              </Navbar.Collapse>
+            </Navbar>
       </Head>
 
       <main>
-        <h1 className="title">
+{/*        <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
         </h1>
 
@@ -55,7 +82,8 @@ export default function Home({ isConnected }) {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
-        </div>
+        </div>*/}
+        <BasicTable/>
       </main>
 
       <footer>
@@ -77,6 +105,7 @@ export default function Home({ isConnected }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background-color: lightblue;
         }
 
         main {
@@ -86,6 +115,7 @@ export default function Home({ isConnected }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background-color:lightyellow;
         }
 
         footer {

@@ -7,10 +7,19 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/data-grid": "^4.0.0-alpha.17",
+    "bootstrap": "^4.5.3",
+    "date-fns": "^2.16.1",
+    "moment": "^2.29.1",
     "mongodb": "^3.5.9",
     "next": "latest",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^16.14.0",
+    "react-bootstrap": "^1.4.3",
+    "react-day-picker": "^7.4.8",
+    "react-dom": "^16.14.0",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^5.2.0"
   },
   "license": "MIT"
 }
