@@ -15,6 +15,7 @@ import dateFnsFormat from 'date-fns/format';
 import { getMonth, getDate, format, addDays,parseISO } from 'date-fns';
 import WeekSelection from './WeekSelection'
 import TaskSelection from './TaskSelection'
+import styles from './basicTable.module.css'
 
 const useStyles = makeStyles({
   table: {
@@ -171,9 +172,6 @@ export default function BasicTable() {
            <TableRow>
               <TableCell>
                 <WeekSelection selectedDate={callbackDateFunction}/>
-                  {/*<div>{dateSelected}</div>
-                <div>{getMonth(new Date(2012, 1, 29))}</div>
-                <div>{getDateLabel(new Date(dateSelected))}</div>*/}
               </TableCell>
               <TableCell>
                 <TaskSelection selectedTasks={callbackTasksFunction}/>
@@ -194,22 +192,6 @@ export default function BasicTable() {
                                    placeholder="NA"
 
                         />
-                      {/*
-                          <Select labelId="simple-select-helper-label"
-                               id="taskName"
-                               name="taskName"
-                               value={task.taskName}
-                               onChange={event => handleTaskChange(index, event)}
-                             >
-                               <MenuItem value="">
-                                 <em>None</em>
-                               </MenuItem>
-                               <MenuItem value={'Default'}>Default</MenuItem>
-                               <MenuItem value={'Holiday'}>Holiday</MenuItem>
-                               <MenuItem value={'Training'}>Training</MenuItem>
-                               <MenuItem value={'Other'}>Other...</MenuItem>
-                             </Select>
-                      */}
                       </TableCell>
                       <TableCell align="right">
                           <TextField id="mo"
@@ -305,11 +287,6 @@ export default function BasicTable() {
 
            }
 
-           {/*
-                         tasksSelected.map((task, index) => (
-                            <div key={`${task}~${index}`}>{task.taskName}</div>
-                         ))
-           */}
           <TableRow>
               <TableCell/>
               <TableCell><h3><span className="badge badge-secondary">{totalHours.total_mo}</span></h3></TableCell>
