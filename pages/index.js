@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './_app';
-import 'bootstrap/dist/css/bootstrap.css';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
