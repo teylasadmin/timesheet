@@ -13,9 +13,9 @@ import Layout from "../components/Layout";
 const Index = () => (
   <Layout>
     <br />
-    <Link href="/explore">
+{/*    <Link href="/explore">
       <a> Welcome to WHATABYTE! Start Exploring Now</a>
-    </Link>
+    </Link>*/}
 
     <BasicTable/>
   </Layout>
