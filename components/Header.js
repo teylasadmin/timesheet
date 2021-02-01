@@ -8,12 +8,23 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 
+
+
 const Header = props => (
 <Navbar bg="light" expand="lg">
   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
+
+    {props.navButtons.map(button => (
+      <Nav.Link
+        key={button.path}
+        href={button.path}>
+        {button.label}
+      </Nav.Link>
+    ))}
+
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#link">Link</Nav.Link>
     </Nav>

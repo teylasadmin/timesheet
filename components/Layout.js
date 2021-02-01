@@ -3,11 +3,11 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
-
+import navButtons from "../config/buttons";
 //import "./Layout.scss";
 //import "./index.scss";
 
-import navButtons from "../config/buttons";
+
 
 const Layout = props => {
 
@@ -25,9 +25,8 @@ const Layout = props => {
         <meta charSet="utf-8" />
       </Head>
 
-      <Header/>
+      <Header navButtons={navButtons} />
       <div className="Content">{props.children}</div>
-      <NavBar navButtons={navButtons} />
      <Footer/>
     </div>
   );
