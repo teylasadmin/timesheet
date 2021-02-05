@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './_app';
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Header from "./Header";
-import Footer from "./Footer";
 import BasicTable from './BasicTable'
 import Link from "next/link";
 
@@ -12,10 +11,6 @@ import Layout from "../components/Layout";
 const Index = () => (
   <Layout>
     <br />
-{/*    <Link href="/explore">
-      <a> Welcome to WHATABYTE! Start Exploring Now</a>
-    </Link>*/}
-
     <BasicTable/>
   </Layout>
 );

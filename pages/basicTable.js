@@ -278,7 +278,7 @@ export default function BasicTable() {
                                       onChange={event => handleTaskChange(index, event)}
                            />
                       </TableCell>
-                      <TableCell><h3><span className="badge badge-secondary">{task.taskTotal}</span></h3></TableCell>
+                      <TableCell align="right"><h3><span className="badge badge-secondary">{task.taskTotal}</span></h3></TableCell>
                       <TableCell align="right"><button type="button" disabled={tasks.length===1} className="btn btn-lg btn-success" onClick={() => handleRemoveTask(index)}>Remove task</button></TableCell>
                    </TableRow>
               ))
@@ -289,14 +289,14 @@ export default function BasicTable() {
 
           <TableRow>
               <TableCell/>
-              <TableCell><h3><span className="badge badge-secondary">{totalHours.total_mo}</span></h3></TableCell>
-              <TableCell><h3><span className="badge badge-secondary">{totalHours.total_tu}</span></h3></TableCell>
-              <TableCell><h3><span className="badge badge-secondary">{totalHours.total_we}</span></h3></TableCell>
-              <TableCell><h3><span className="badge badge-secondary">{totalHours.total_th}</span></h3></TableCell>
-              <TableCell><h3><span className="badge badge-secondary">{totalHours.total_fr}</span></h3></TableCell>
-              <TableCell><h3><span className="badge badge-secondary">{totalHours.total_sa}</span></h3></TableCell>
-              <TableCell><h3><span className="badge badge-secondary">{totalHours.total_su}</span></h3></TableCell>
-              <TableCell><h3><span className="badge badge-primary">{totalHours.grandTotal}</span></h3></TableCell>
+              <TableCell align="right"><h3><span className="badge badge-secondary">{totalHours.total_mo}</span></h3></TableCell>
+              <TableCell align="right"><h3><span className="badge badge-secondary">{totalHours.total_tu}</span></h3></TableCell>
+              <TableCell align="right"><h3><span className="badge badge-secondary">{totalHours.total_we}</span></h3></TableCell>
+              <TableCell align="right"><h3><span className="badge badge-secondary">{totalHours.total_th}</span></h3></TableCell>
+              <TableCell align="right"><h3><span className="badge badge-secondary">{totalHours.total_fr}</span></h3></TableCell>
+              <TableCell align="right"><h3><span className="badge badge-secondary">{totalHours.total_sa}</span></h3></TableCell>
+              <TableCell align="right"><h3><span className="badge badge-secondary">{totalHours.total_su}</span></h3></TableCell>
+              <TableCell align="right"><h3><span className="badge badge-primary">{totalHours.grandTotal}</span></h3></TableCell>
           </TableRow>
         </TableBody>
       </Table>
