@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import TaskSelect from './TaskSelect'
+import Icon from '@material-ui/core/Icon';
+import AddIcon from '@material-ui/icons/Add';
 
 function getModalStyle() {
     const top = 50;
@@ -45,7 +47,7 @@ export default function TaskSelection(props) {
 
     return (
         <div>
-            <Button variant="contained" color="primary" onClick={handleOpen}>
+            <Button variant="contained" color="primary" size="small" endIcon={<AddIcon/>} onClick={handleOpen}>
                 Add tasks
             </Button>
 

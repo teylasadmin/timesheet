@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import DateRange from './DateRange'
+import DateRangeIcon from '@material-ui/icons/DateRange';
 
 function getModalStyle() {
     const top = 50;
@@ -45,7 +46,7 @@ export default function WeekSelection(props) {
 
     return (
         <div>
-            <Button variant="contained" color="primary" onClick={handleOpen}>
+            <Button variant="contained" color="primary" size="small" endIcon={<DateRangeIcon/>} onClick={handleOpen}>
                 Select week
             </Button>
 

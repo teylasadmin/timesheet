@@ -7,6 +7,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
@@ -279,7 +281,14 @@ export default function BasicTable() {
                            />
                       </TableCell>
                       <TableCell align="right"><h3><span className="badge badge-secondary">{task.taskTotal}</span></h3></TableCell>
-                      <TableCell align="right"><button type="button" disabled={tasks.length===1} className="btn btn-lg btn-success" onClick={() => handleRemoveTask(index)}>Remove task</button></TableCell>
+                      <TableCell align="right"><Button type="button"
+                                                       disabled={tasks.length===1}
+                                                       variant="contained"
+                                                       color="secondary"
+                                                       size="small"
+                                                       startIcon={<DeleteIcon />}
+                                                       onClick={() => handleRemoveTask(index)}>Delete</Button>
+                      </TableCell>
                    </TableRow>
               ))
 
@@ -300,8 +309,8 @@ export default function BasicTable() {
           </TableRow>
         </TableBody>
       </Table>
-      <button type="submit" className="btn btn-lg btn-success" onSubmit={() => handleSubmit()}>Submit</button>
-      <button type="button" className="btn btn-lg btn-success" onClick={() => handleAddTask()}>Add Task</button>
+      <Button type="submit" size="small" variant="contained" color="primary"onSubmit={() => handleSubmit()}>Submit</Button>
+      {/*<button type="button" className="btn btn-lg btn-success" onClick={() => handleAddTask()}>Add Task</button>*/}
     </TableContainer>
 {/*            <pre>
               {JSON.stringify(tasks, null, 2)}

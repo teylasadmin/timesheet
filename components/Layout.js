@@ -15,6 +15,7 @@ const Layout = props => {
     <div className="Layout">
       <Head>
         <title>Timesheet</title>
+        <link rel="icon" href="/favicon.ico" />
         <link
           rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -26,7 +27,7 @@ const Layout = props => {
       </Head>
 
       <Header navButtons={navButtons} />
-      <div className="Content">{props.children}</div>
+      <div className="container">{props.children}</div>
      <Footer/>
     </div>
   );
