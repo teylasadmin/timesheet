@@ -14,7 +14,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import 'react-day-picker/lib/style.css';
 import dateFnsFormat from 'date-fns/format';
-import { getMonth, getDate, format, addDays,parseISO } from 'date-fns';
+import { getMonth, getDate, format, addDays,parseISO, startOfWeek } from 'date-fns';
 import WeekSelection from './WeekSelection'
 import TaskSelection from './TaskSelection'
 import styles from './basicTable.module.css'
@@ -35,8 +35,12 @@ export default function BasicTable() {
     const [weekDates, setWeekDates] = useState([]);
     const [totalHours, setTotalHours] = useState({total_mo:0, total_tu:0, total_we:0, total_th:0, total_fr:0, total_sa:0, total_su:0, grandTotal:0 })
 
-
-    const [dateSelected, setDateSelected] = useState('2021/02/20');
+    {
+    /*
+      set date as monday of the current week in a format yyyy/MM/dd
+    */
+    }
+    const [dateSelected, setDateSelected] = useState(format(startOfWeek(new Date(), { weekStartsOn: 1 }),'yyyy/MM/dd'));
     const [tasksSelected, setTasksSelected] = useState([]);
 
     const handleAddTask = () => {
@@ -44,8 +48,6 @@ export default function BasicTable() {
       values.push({taskName:'Default', mo:'', tu:'', we:'', th:'', fr:'', sa:'', su:'', taskTotal: 0});
       setTasks(values);
     };
-
-   //useEffect(() => { handleDayTotal('mo');handleGrandTotal();  }, [])
 
     const handleRemoveTask = index => {
       const values = [...tasks]; // cloning an array
@@ -151,8 +153,6 @@ export default function BasicTable() {
       handleGrandTotal();
     };
 
-    /*const FORMAT = 'dd/MM/yyyy';*/
-
     const callbackDateFunction = (dateRange) => {
           setDateSelected(dateRange)
     }
@@ -164,7 +164,6 @@ export default function BasicTable() {
           })
     }
 
-    const formattedDate = new Date();
   return (
   <form onSubmit={handleSubmit} noValidate>
     <TableContainer component={Paper}>
