@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCompass,
+  faWrench,
   faMapMarkerAlt,
   faUser,
   faShoppingCart
@@ -9,19 +10,9 @@ import {
 
 const navButtons = [
   {
-    label: "Explore",
-    path: "/explore",
-    icon: <FontAwesomeIcon icon={faCompass} />
-  },
-  {
-    label: "Near Me",
-    path: "/nearme",
-    icon: <FontAwesomeIcon icon={faMapMarkerAlt} />
-  },
-  {
-    label: "My Cart",
-    path: "/mycart",
-    icon: <FontAwesomeIcon icon={faShoppingCart} />
+    label: "Settings",
+    path: "/settings",
+    icon: <FontAwesomeIcon icon={faWrench} />
   },
   {
     label: "Profile",
