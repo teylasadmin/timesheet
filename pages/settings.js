@@ -48,14 +48,14 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Add Project', 'Add Tasks', 'Review project'];
 
-function getStepContent(step) {
+function getStepContent(step, project, updateFunction) {
   switch (step) {
     case 0:
-      return <AddProjectForm/>;
+      return <AddProjectForm project={project} updateFunction={updateFunction}/>;
     case 1:
-      return <AddTaskForm/>;
+      return <AddTaskForm project={project}/>;
     case 2:
-      return <SummaryPage/>;
+      return <SummaryPage project={project}/>;
     default:
       throw new Error('Unknown step');
   }
@@ -67,11 +67,14 @@ export default function Settings() {
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    console.log(JSON.stringify(project, null, 2))
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const [project, setProject] = React.useState({projectName:'', projectOwner:'Michal Stachurski', projectStartDate:'', projectEndDate:'',tags:[], taskList:[]});
 
   return (
     <Layout>
@@ -99,7 +102,7 @@ export default function Settings() {
               </>
             ) : (
               <>
-                {getStepContent(activeStep)}
+                {getStepContent(activeStep, project, setProject)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button variant="contained" onClick={handleBack} className={classes.button}>
