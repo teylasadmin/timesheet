@@ -12,15 +12,8 @@ export default function AddProjectForm(props) {
    const handleFieldChange = (event) => {
       const alphanumeric = /^[0-9a-zA-Z\s]+$|^$/
       const proj = {...props.project}
-
       if (event.target.name === "projectName" && alphanumeric.test(event.target.value)) {
            proj.projectName=event.target.value
-      }else
-      if (event.target.name === "projectStartDate") {
-           proj.projectStartDate=event.target.value
-      }else
-      if (event.target.name === "projectEndDate") {
-           proj.projectEndDate=event.target.value
       }else
       if (event.target.name === "tags") {
            proj.tags=event.target.value
@@ -30,6 +23,20 @@ export default function AddProjectForm(props) {
       }
       props.updateFunction(proj)
     };
+
+    const handleFromDateChange=(date) => {
+        const proj = {...props.project}
+        //setFormData({...formData, due_at: date})
+        proj.projectStartDate=date
+        props.updateFunction(proj)
+    }
+
+    const handleToDateChange=(date) => {
+        const proj = {...props.project}
+        //setFormData({...formData, due_at: date})
+        proj.projectEndDate=date
+        props.updateFunction(proj)
+    }
 
    return (
    <div style={{ width: '100%' }}>
@@ -56,21 +63,34 @@ export default function AddProjectForm(props) {
                fullWidth
              />
            </Grid>
+           {/* native material-ui solution
+             <TextField
+               id="date"
+               label="Birthday"
+               type="date"
+               defaultValue="2017-05-24"
+               className={classes.textField}
+               InputLabelProps={{
+                 shrink: true,
+               }}
+             />
+           */}
            <MuiPickersUtilsProvider utils={DateFnsUtils}>
                <Grid item xs={12} sm={6}>
                 <KeyboardDatePicker
                   required
                   disableToolbar
                   variant="inline"
-                  format="MM/dd/yyyy"
+                  format="dd/MM/yyyy"
                   margin="normal"
                   id="projectStartDate"
                   label="Project Start Date"
                   value={props.project.projectStartDate}
-                  onChange={event => handleFieldChange(event)}
+                  onChange={date => handleFromDateChange(date)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
+                  minDate="02.01.2020"
                   fullWidth
                 />
                </Grid>
@@ -80,15 +100,16 @@ export default function AddProjectForm(props) {
                   required
                   disableToolbar
                   variant="inline"
-                  format="MM/dd/yyyy"
+                  format="dd/MM/yyyy"
                   margin="normal"
                   id="projectEndDate"
                   label="Project End Date"
                   value={props.project.projectEndDate}
-                  onChange={event => handleFieldChange(event)}
+                  onChange={date => handleToDateChange(date)}
                   KeyboardButtonProps={{
                     'aria-label': 'change date',
                   }}
+                  minDate="02.01.2020"
                   fullWidth
                 />
                </Grid>
