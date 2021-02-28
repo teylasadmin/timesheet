@@ -76,8 +76,8 @@ export default function Settings() {
 
   const [project, setProject] = React.useState({projectName:'',
                                                 projectOwner:'Michal Stachurski',
-                                                projectStartDate:new Date('2014-08-18T21:11:54'),
-                                                projectEndDate:new Date('2014-08-18T21:11:54'),
+                                                projectStartDate:new Date(),
+                                                projectEndDate:new Date(),
                                                 tags:[],
                                                 projectDescription:'',
                                                 taskList:[]});

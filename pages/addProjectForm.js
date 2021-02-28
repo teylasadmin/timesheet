@@ -6,6 +6,7 @@ import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
+import ChipInput from 'material-ui-chip-input'
 
 export default function AddProjectForm(props) {
 
@@ -115,6 +116,15 @@ export default function AddProjectForm(props) {
                </Grid>
            </MuiPickersUtilsProvider>
             <Grid item xs={12}>
+                            <ChipInput
+                                id="tags"
+                                name="tags"
+                                label="Tags"
+                                fullWidth
+                                defaultValue={[]}
+                              /*onChange={(chips) => handleChange(chips)}     see https://www.npmjs.com/package/material-ui-chip-input*/
+                            />
+             {/*
               <TextField
                 required
                 id="tags"
@@ -123,7 +133,7 @@ export default function AddProjectForm(props) {
                 value={props.tags}
                 onChange={event => handleFieldChange(event)}
                 fullWidth
-              />
+              />*/}
             </Grid>
             <Grid item xs={12}>
               <TextField
