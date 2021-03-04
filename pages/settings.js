@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   stepper: {
     padding: theme.spacing(3, 0, 5),
+    marginTop:'50px'
   },
   buttons: {
     display: 'flex',
@@ -53,7 +54,7 @@ function getStepContent(step, project, updateFunction) {
     case 0:
       return <AddProjectForm project={project} updateFunction={updateFunction}/>;
     case 1:
-      return <AddTaskForm project={project}/>;
+      return <AddTaskForm project={project}  updateFunction={updateFunction}/>;
     case 2:
       return <SummaryPage project={project}/>;
     default:
@@ -80,7 +81,7 @@ export default function Settings() {
                                                 projectEndDate:new Date(),
                                                 tags:[],
                                                 projectDescription:'',
-                                                taskList:[]});
+                                                taskList:[{id:1, taskName:'Dummy task', taskTotalHours:'200',projectId:'5',taskDescription:'A dummy task'}]});
 
   return (
     <Layout>

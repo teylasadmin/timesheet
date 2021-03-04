@@ -1,4 +1,5 @@
 import React from 'react'
+import {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,17 +11,25 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
+    maxWidth: 800,
   },
-});
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
+{/*
 const rows = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
@@ -28,9 +37,56 @@ const rows = [
   createData('Cupcake', 305, 3.7, 67, 4.3),
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
+*/}
 
-export default function AddTaskForm() {
+export default function AddTaskForm(props) {
    const classes = useStyles();
+
+  const {taskList} = props.project;
+
+  const [newTask, setNewTask] = useState({id:1, taskName:'', taskTotalHours:'',projectId:'4321',taskDescription:''});
+
+  const handleFieldChange = (event) => {
+     const alphanumeric = /^[0-9a-zA-Z\s]+$|^$/
+     const values = {...newTask};
+
+     if (event.target.name === "taskName" && alphanumeric.test(event.target.value)) {
+          values.taskName=event.target.value
+     }else
+     if (event.target.name === "totalHours") {
+          values.taskTotalHours=event.target.value
+     }else
+     if (event.target.name === "taskDescription" && alphanumeric.test(event.target.value)) {
+          values.taskDescription=event.target.value
+     }
+     setNewTask(values);
+   };
+
+
+
+    const handleAddTask = () => {
+      const values = [...taskList];
+      values.push(newTask);
+      const updatedProject = {...props.project, taskList: values}
+      props.updateFunction(updatedProject)
+    };
+
+
+
+    const handleRemoveTask = index => {
+      const values = [...taskList]; // cloning an array
+      values.splice(index, 1);
+      //setTasks(values); // setTasks is asynchronous !!! and it doesn't take effect
+      const updatedProject = {...props.project, taskList: values}
+      props.updateFunction(updatedProject)
+    };
+
+{/*
+    const handleSubmit = e => {
+      e.preventDefault();
+      console.log("TASKS: ", JSON.stringify(tasks, null, 2));
+    };
+*/}
    return (
       <div style={{ width: '100%' }}>
          <div style={{'maxWidth':'50%','margin': 'auto'}}>
@@ -42,15 +98,19 @@ export default function AddTaskForm() {
                   id="taskName"
                   name="taskName"
                   label="Task Name"
+                  value={newTask.taskName}
+                  onChange={event => handleFieldChange(event)}
                   fullWidth
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
-                  id="taskId"
-                  name="taskId"
+                  id="id"
+                  name="id"
                   label="Task ID"
+                  value={newTask.id}
+                  disabled
                   fullWidth
                 />
               </Grid>
@@ -61,6 +121,8 @@ export default function AddTaskForm() {
                   id="totalHours"
                   name="totalHours"
                   label="Total Hours"
+                  value={newTask.taskTotalHours}
+                  onChange={event => handleFieldChange(event)}
                   fullWidth
                 />
               </Grid>
@@ -70,7 +132,9 @@ export default function AddTaskForm() {
                   id="projectId"
                   name="projectId"
                   label="Project ID"
+                  value={newTask.projectId}
                   fullWidth
+                  disabled
                 />
               </Grid>
               <Grid item xs={12}>
@@ -79,42 +143,64 @@ export default function AddTaskForm() {
                   id="taskDescription"
                   name="taskDescription"
                   label="Task description"
+                  value={newTask.taskDescription}
+                  onChange={event => handleFieldChange(event)}
                   fullWidth
                 />
               </Grid>
               <Grid container justify="flex-end">
                    <Button
                         variant="contained"
-                        color="secondary">
+                        color="secondary"
+                        onClick={() => handleAddTask()}>
                         Add Task
                    </Button>
               </Grid>
             </Grid>
          </div>
-         {/*<div  className={classes.table}>
+         {taskList.length > 0 &&
+         <div   style={{'maxWidth':'70%','margin': 'auto', 'margin-top':'50px'}}>
+           <Grid container spacing={3}>
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Task Name</TableCell>
-                  <TableCell align="right">Task ID</TableCell>
+                  <TableCell>Task ID</TableCell>
+                  <TableCell align="right">Task Name</TableCell>
                   <TableCell align="right">Total Hours</TableCell>
                   <TableCell align="right">Project ID</TableCell>
+                  <TableCell align="right">Task description</TableCell>
+                  <TableCell/>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.name}>
+                {taskList.map((task, index) => (
+                  <TableRow key={task.id}>
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {task.id}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
+                    <TableCell align="right">{task.taskName}</TableCell>
+                    <TableCell align="right">{task.taskTotalHours}</TableCell>
+                    <TableCell align="right">{task.projectId}</TableCell>
+                    <TableCell align="right">{task.taskDescription}</TableCell>
+                    <TableCell align="right">
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            className={classes.button}
+                            startIcon={<DeleteIcon />}
+                            size="small"
+                            onClick={() => handleRemoveTask(index)}
+                          >
+                            Delete
+                          </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
-         </div>*/}
+            </Grid>
+         </div>
+         }
          </div>
    )
 }
