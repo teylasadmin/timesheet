@@ -81,7 +81,7 @@ export default function Settings() {
                                                 projectEndDate:new Date(),
                                                 tags:[],
                                                 projectDescription:'',
-                                                taskList:[{id:1, taskName:'Dummy task', taskTotalHours:'200',projectId:'5',taskDescription:'A dummy task'}]});
+                                                taskList:[]});
 
   return (
     <Layout>
@@ -132,23 +132,3 @@ export default function Settings() {
     </Layout>
   );
 }
-
-{/*
-export default function Settings() {
-   return (
-   <Layout>
-            <form onSubmit="" noValidate>
-                      <TextField id="mo"
-                                 name="project_name" // find an array of short names of week days
-                                 label="Project Name"
-                                  InputLabelProps={{
-                                    shrink: true,
-                                  }}
-
-                                 placeholder="Project Name"
-                      />
-           </form>
-   </Layout>
-   )
-}
-*/}

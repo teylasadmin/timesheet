@@ -27,15 +27,19 @@ export default function AddProjectForm(props) {
 
     const handleFromDateChange=(date) => {
         const proj = {...props.project}
-        //setFormData({...formData, due_at: date})
         proj.projectStartDate=date
         props.updateFunction(proj)
     }
 
     const handleToDateChange=(date) => {
         const proj = {...props.project}
-        //setFormData({...formData, due_at: date})
         proj.projectEndDate=date
+        props.updateFunction(proj)
+    }
+
+    const handleTagsChange=(tags) => {
+        const proj = {...props.project}
+        proj.tags=tags
         props.updateFunction(proj)
     }
 
@@ -64,18 +68,6 @@ export default function AddProjectForm(props) {
                fullWidth
              />
            </Grid>
-           {/* native material-ui solution
-             <TextField
-               id="date"
-               label="Birthday"
-               type="date"
-               defaultValue="2017-05-24"
-               className={classes.textField}
-               InputLabelProps={{
-                 shrink: true,
-               }}
-             />
-           */}
            <MuiPickersUtilsProvider utils={DateFnsUtils}>
                <Grid item xs={12} sm={6}>
                 <KeyboardDatePicker
@@ -116,24 +108,14 @@ export default function AddProjectForm(props) {
                </Grid>
            </MuiPickersUtilsProvider>
             <Grid item xs={12}>
-                            <ChipInput
-                                id="tags"
-                                name="tags"
-                                label="Tags"
-                                fullWidth
-                                defaultValue={[]}
-                              /*onChange={(chips) => handleChange(chips)}     see https://www.npmjs.com/package/material-ui-chip-input*/
-                            />
-             {/*
-              <TextField
-                required
-                id="tags"
-                name="tags"
-                label="Tags"
-                value={props.tags}
-                onChange={event => handleFieldChange(event)}
-                fullWidth
-              />*/}
+                <ChipInput
+                    id="tags"
+                    name="tags"
+                    label="Tags"
+                    fullWidth
+                    defaultValue={[]}
+                    onChange={(chips) => handleTagsChange(chips)}
+                />
             </Grid>
             <Grid item xs={12}>
               <TextField
