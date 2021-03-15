@@ -70,10 +70,29 @@ export default function BasicTable() {
       console.log("Total hours per day : ", totalHours)
     };
 
-    const handleSubmit = e => {
+/*    const handleSubmit = e => {
       e.preventDefault();
       console.log("TASKS: ", JSON.stringify(tasks, null, 2));
-    };
+    };*/
+
+      /**
+        Good article about CORS: https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe
+      **/
+      const handleSubmit = async event => {
+        event.preventDefault()
+        let data = {"weekStart":dateSelected, "data":tasks}
+        const res = await fetch('http://localhost:3000/api/timesheets', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        }).catch((error) => {
+                   console.log(error)
+                });
+
+        console.log(res)
+      }
 
     const calculateTotal = (numbers) => {
       return Object.entries(numbers).reduce((finalValue, [key, value]) => {
@@ -167,7 +186,7 @@ export default function BasicTable() {
     }
 
   return (
-  <form onSubmit={handleSubmit} noValidate>
+  <form noValidate onSubmit={handleSubmit}>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
 
@@ -310,7 +329,7 @@ export default function BasicTable() {
           </TableRow>
         </TableBody>
       </Table>
-      <Button type="submit" size="small" variant="contained" color="primary"onSubmit={() => handleSubmit()}>Submit</Button>
+      <Button type="submit" size="small" variant="contained" color="primary">Submit</Button>
       {/*<button type="button" className="btn btn-lg btn-success" onClick={() => handleAddTask()}>Add Task</button>*/}
     </TableContainer>
 {/*            <pre>

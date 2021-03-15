@@ -71,6 +71,22 @@ export default function Settings() {
     console.log(JSON.stringify(project, null, 2))
   };
 
+  const handleSaveProject = async event => {
+     event.preventDefault()
+
+     const res = await fetch('http://localhost:3000/api/projects', {
+       method: 'post',
+       headers: {
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify(project)
+     }).catch((error) => {
+                console.log(error)
+             });
+
+     console.log(res)
+   }
+
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
@@ -119,7 +135,7 @@ export default function Settings() {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleNext}
+                    onClick={activeStep === steps.length - 1 ? handleSaveProject : handleNext}
                     className={classes.button}
                   >
                     {activeStep === steps.length - 1 ? 'Save project' : 'Next'}
