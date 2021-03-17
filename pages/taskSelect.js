@@ -2,7 +2,8 @@ import React from 'react'
 import {useState, useEffect} from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import Button from '@material-ui/core/Button';
-
+import fetch from 'isomorphic-unfetch';
+import useSWR from 'swr'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -14,8 +15,6 @@ const columns = [
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 260,
-    valueGetter: (params) =>
-      `${params.getValue('taskName') || ''} ${params.getValue('projectName') || ''}`,
   },
   {
     field: 'taskHourAllowance',
@@ -27,6 +26,7 @@ const columns = [
 const handleSelectTask = () => {
 
 }
+/*
 
 const rows = [
   { id: 1, taskName: 'UI development', projectName: 'Timesheeet React Project', taskDescription: 'Development Front-end', taskHourAllowance: 35 },
@@ -36,6 +36,14 @@ const rows = [
   { id: 5, taskName: 'Holiday', projectName: 'Miscellaneous', taskDescription: 'Time Off', taskHourAllowance: 16 },
   { id: 6, taskName: 'Training', projectName: 'Miscellaneous', taskDescription: 'Training', taskHourAllowance: 16 },
 ];
+*/
+
+async function getProjectTasks(...args) {
+  console.log(...args);
+  const[url, projectId] = args;
+  const res = await fetch(`${url}?id=${projectId}`);
+  return res.json();
+}
 
 export default function TaskSelect(props) {
 
@@ -75,12 +83,30 @@ export default function TaskSelect(props) {
     props.selectedTasks(selectedTasks);
     props.closeModalCallback();
   }
+/*
+     async function getInitialProps(ctx) {
+      console.log("About to read tasks from mongo")
+      const res = await fetch("http://localhost:3000/api/projects?id=604f69876dd713535c416f83");
+      const json = await res.json();
+      return { rows: json.taskList }
+    }*/
+  const { data, error } = useSWR(['/api/projects','604f69876dd713535c416f83'], getProjectTasks)
+
+  if (error) return <div>failed to load</div>
+  if (!data) return <div>loading...</div>
+
+    console.log("DATA from swr stringify: ",JSON.stringify(data.taskList))
+    //console.log("DATA from swr: ", data.taskList)
+
+    //console.log("DATA from swr: ", JSON.parse(data)) //JSON.parse(JSON.stringify(data)).taskList
+    console.log("ERROR from swr: ", error)
+    //console.log("DATA raw from swr: ", data.json())
 
   return (
     <div>
      <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-          rows={rows}
+          rows={data.taskList}
           columns={columns}
           pageSize={6}
           checkboxSelection
@@ -98,3 +124,30 @@ export default function TaskSelect(props) {
     </div>
   );
 }
+
+
+/*export async function getProjectTasks {
+  console.log("About to read tasks from mongo")
+  const res = await fetch("http://localhost:3000/api/projects?id=604f69876dd713535c416f83");
+  const json = await res.json();
+  return json.taskList;
+}*/
+/*export async function getServerSideProps() {
+   console.log("Hello from the other side")
+   return {
+     props: {
+        data: "Michal",
+     }
+   }
+}*/
+
+/*export async function getServerSideProps() {
+  console.log("About to read tasks from mongo")
+  const res = await fetch("http://localhost:3000/api/projects?id=604f69876dd713535c416f83");
+  const json = await res.json();
+  return {
+    props: {
+      data: json.taskList,
+    },
+  };
+}*/

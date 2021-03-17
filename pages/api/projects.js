@@ -6,9 +6,12 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
+    const { id } = req.query;
+    console.log("id:",id)
+    //let doc = await req.db.collection('projects').findOne({'projectName':'Test project for reading tasks'}, {projection:{ _id: 0, taskList: 1 }}) // gets taskList only
+    let doc = await req.db.collection('projects').findOne({'projectName':'Test project for reading tasks'})
+    console.log("DOC:",doc);
 
-    let doc = await req.db.collection('projects').findOne()
-    console.log(doc);
     res.json(doc);
 });
 
