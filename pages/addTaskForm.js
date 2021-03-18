@@ -83,6 +83,7 @@ export default function AddTaskForm(props) {
                   id="taskName"
                   name="taskName"
                   label="Task Name"
+                  inputProps={{autoComplete:'off'}}
                   value={newTask.taskName}
                   onChange={event => handleFieldChange(event)}
                   fullWidth
@@ -106,6 +107,7 @@ export default function AddTaskForm(props) {
                   id="totalHours"
                   name="totalHours"
                   label="Total Hours"
+                  inputProps={{autoComplete:'off'}}
                   value={newTask.taskTotalHours}
                   onChange={event => handleFieldChange(event)}
                   fullWidth
@@ -128,6 +130,7 @@ export default function AddTaskForm(props) {
                   id="taskDescription"
                   name="taskDescription"
                   label="Task description"
+                  inputProps={{autoComplete:'off'}}
                   value={newTask.taskDescription}
                   onChange={event => handleFieldChange(event)}
                   fullWidth

@@ -53,6 +53,7 @@ export default function AddProjectForm(props) {
                 id="projectName"
                 name="projectName"
                 label="Project Name"
+                inputProps={{autoComplete:'off'}}
                 value={props.project.projectName}
                 onChange={event => handleFieldChange(event)}
                 fullWidth
@@ -63,6 +64,7 @@ export default function AddProjectForm(props) {
                id="projectOwner"
                name="projectOwner"
                label="Project Owner"
+               inputProps={{autoComplete:'off'}}
                value={props.project.projectOwner}
                onChange={event => handleFieldChange(event)}
                fullWidth
@@ -123,6 +125,7 @@ export default function AddProjectForm(props) {
                 id="projectDescription"
                 name="projectDescription"
                 label="Project description"
+                inputProps={{autoComplete:'off'}}
                 value={props.projectDescription}
                 onChange={event => handleFieldChange(event)}
                 fullWidth

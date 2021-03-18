@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TextField from '@material-ui/core/TextField';
+import Alert from '@material-ui/lab/Alert';
 
 
 import Button from '@material-ui/core/Button';
@@ -186,6 +187,10 @@ export default function BasicTable() {
     }
 
   return (
+  <>
+  {/*napisac coomponent ktory bedzie przyjmowal argumenty severity (info, error, warning, success), message*/}
+  <Alert onClose={() => {}} severity="success">Your timesheet has been successfully saved</Alert>
+
   <form noValidate onSubmit={handleSubmit}>
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -213,13 +218,14 @@ export default function BasicTable() {
                                    value={task.taskName}
                                    placeholder="NA"
 
+
                         />
                       </TableCell>
                       <TableCell align="right">
                           <TextField id="mo"
                                      name="mo" // find an array of short names of week days
                                      label={getDateLabel(new Date(dateSelected))}
-                                     inputProps={{className:'digitsOnly'}}
+                                     inputProps={{className:'digitsOnly',autoComplete:'off'}}
                                       InputLabelProps={{
                                         shrink: true,
                                       }}
@@ -232,6 +238,7 @@ export default function BasicTable() {
                          <TextField id="tu"
                                     name="tu"
                                     label={getDateLabel(addDays(new Date(dateSelected), 1))}
+                                    inputProps={{autoComplete:'off'}}
                                      InputLabelProps={{
                                        shrink: true,
                                      }}
@@ -244,6 +251,7 @@ export default function BasicTable() {
                           <TextField id="we"
                                       name="we"
                                       label={getDateLabel(addDays(new Date(dateSelected), 2))}
+                                      inputProps={{autoComplete:'off'}}
                                        InputLabelProps={{
                                          shrink: true,
                                        }}
@@ -256,6 +264,7 @@ export default function BasicTable() {
                           <TextField id="th"
                                      name="th"
                                      label={getDateLabel(addDays(new Date(dateSelected), 3))}
+                                     inputProps={{autoComplete:'off'}}
                                       InputLabelProps={{
                                         shrink: true,
                                       }}
@@ -268,6 +277,7 @@ export default function BasicTable() {
                            <TextField id="fr"
                                       name="fr"
                                       label={getDateLabel(addDays(new Date(dateSelected), 4))}
+                                      inputProps={{autoComplete:'off'}}
                                        InputLabelProps={{
                                          shrink: true,
                                        }}
@@ -280,6 +290,7 @@ export default function BasicTable() {
                            <TextField id="sa"
                                       name="sa"
                                       label={getDateLabel(addDays(new Date(dateSelected), 5))}
+                                      inputProps={{autoComplete:'off'}}
                                        InputLabelProps={{
                                          shrink: true,
                                        }}
@@ -292,6 +303,7 @@ export default function BasicTable() {
                            <TextField id="su"
                                       name="su"
                                       label={getDateLabel(addDays(new Date(dateSelected), 6))}
+                                      inputProps={{autoComplete:'off'}}
                                        InputLabelProps={{
                                          shrink: true,
                                        }}
@@ -336,5 +348,6 @@ export default function BasicTable() {
               {JSON.stringify(tasks, null, 2)}
             </pre>*/}
    </form>
+   </>
   );
 }
