@@ -4,8 +4,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import navButtons from "../config/buttons";
-//import "./Layout.scss";
-//import "./index.scss";
 
 
 
@@ -27,7 +25,9 @@ const Layout = props => {
       </Head>
 
       <Header navButtons={navButtons} />
-      <div className="container">{props.children}</div>
+      <main>
+        <div className="container">{props.children}</div>
+      </main>
      <Footer/>
     </div>
   );

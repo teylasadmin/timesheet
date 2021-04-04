@@ -16,15 +16,13 @@ const Header = props => (
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-
-    {props.navButtons.map(button => (
-      <Nav.Link
-        key={button.path}
-        href={button.path}>
-        {button.label}
-      </Nav.Link>
-    ))}
-
+        {props.navButtons.map(button => (
+          <Nav.Link
+            key={button.path}
+            href={button.path}>
+            {button.label}
+          </Nav.Link>
+        ))}
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#link">Link</Nav.Link>
     </Nav>
