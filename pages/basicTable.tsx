@@ -218,7 +218,7 @@ export default function BasicTable() {
                                     }}
                                    value={task.taskName}
                                    placeholder="NA"
-
+                                   disabled={showAlert}
 
                         />
                       </TableCell>
@@ -231,6 +231,7 @@ export default function BasicTable() {
                                         shrink: true,
                                       }}
                                      value={task.mo}
+                                     disabled={showAlert}
                                      placeholder="0"
                                      onChange={event => handleTaskChange(index, event)}
                           />
@@ -244,6 +245,7 @@ export default function BasicTable() {
                                        shrink: true,
                                      }}
                                     value={task.tu}
+                                    disabled={showAlert}
                                     placeholder="0"
                                     onChange={event => handleTaskChange(index, event)}
                          />
@@ -257,6 +259,7 @@ export default function BasicTable() {
                                          shrink: true,
                                        }}
                                       value={task.we}
+                                      disabled={showAlert}
                                       placeholder="0"
                                       onChange={event => handleTaskChange(index, event)}
                           />
@@ -270,6 +273,7 @@ export default function BasicTable() {
                                         shrink: true,
                                       }}
                                      value={task.th}
+                                     disabled={showAlert}
                                      placeholder="0"
                                      onChange={event => handleTaskChange(index, event)}
                           />
@@ -283,6 +287,7 @@ export default function BasicTable() {
                                          shrink: true,
                                        }}
                                       value={task.fr}
+                                      disabled={showAlert}
                                       placeholder="0"
                                       onChange={event => handleTaskChange(index, event)}
                            />
@@ -296,6 +301,7 @@ export default function BasicTable() {
                                          shrink: true,
                                        }}
                                       value={task.sa}
+                                      disabled={showAlert}
                                       placeholder="0"
                                       onChange={event => handleTaskChange(index, event)}
                            />
@@ -309,13 +315,14 @@ export default function BasicTable() {
                                          shrink: true,
                                        }}
                                       value={task.su}
+                                      disabled={showAlert}
                                       placeholder="0"
                                       onChange={event => handleTaskChange(index, event)}
                            />
                       </TableCell>
                       <TableCell align="right"><h3><span className="badge badge-secondary">{task.taskTotal}</span></h3></TableCell>
                       <TableCell align="right"><Button type="button"
-                                                       disabled={tasks.length===1}
+                                                       disabled={tasks.length===1 || showAlert}
                                                        variant="contained"
                                                        color="secondary"
                                                        size="small"
