@@ -2,9 +2,10 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
-import TaskSelect from './TaskSelect'
+//import TaskSelect from './TaskSelect'
 import Icon from '@material-ui/core/Icon';
 import AddIcon from '@material-ui/icons/Add';
+import TaskSelect from "./taskSelect";
 
 function getModalStyle() {
     const top = 50;

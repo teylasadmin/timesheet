@@ -112,7 +112,7 @@ export default function AddProjectForm(props) {
             <Grid item xs={12}>
                 <ChipInput
                     id="tags"
-                    name="tags"
+
                     label="Tags"
                     fullWidth
                     defaultValue={[]}

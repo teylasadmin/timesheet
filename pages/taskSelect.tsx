@@ -56,24 +56,24 @@ export default function TaskSelect(props) {
     //console.log("All rows: " + rows);
   };
 
-  const handleRowsSelection = (newSelection) => {
-
-    setSelectedTasks([]);
-    newSelection.rowIds.map(t=> rows.filter(r => r.id==t));
-    setSelectedTasks(newSelection);
-
-    console.log("Tasks ALl to add: " + selectedTasks);
-    console.log("All Tasks JSONs: "+ JSON.stringify(selectedTasks, null, 2));
-    //setDeletedRows([...deletedRows, ...rows.filter((r) => r.id === e.data.id)]);
-    //console.log("All rows: " + rows);
-  };
+  //  const handleRowsSelection = (newSelection) => {
+  //
+  //   setSelectedTasks([]);
+  //   newSelection.rowIds.map(t=> rows.filter(r => r.id==t));
+  //   setSelectedTasks(newSelection);
+  //
+  //   console.log("Tasks ALl to add: " + selectedTasks);
+  //   console.log("All Tasks JSONs: "+ JSON.stringify(selectedTasks, null, 2));
+  //   //setDeletedRows([...deletedRows, ...rows.filter((r) => r.id === e.data.id)]);
+  //   //console.log("All rows: " + rows);
+  // };
 
   const handleSelectTask = () => {
     props.selectedTasks(selectedTasks);
     props.closeModalCallback();
   }
 
-  const { data, error } = useSWR(['/api/projects','604f69876dd713535c416f83'], getProjectTasks)
+  const { data, error } = useSWR(['/api/projects','63bde99fe9252678bc3d825f'], getProjectTasks)
 
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>

@@ -2,8 +2,9 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
-import DateRange from './DateRange'
+//import DateRange from './DateRange'
 import DateRangeIcon from '@material-ui/icons/DateRange';
+import DateRange from "./dateRange";
 
 function getModalStyle() {
     const top = 50;

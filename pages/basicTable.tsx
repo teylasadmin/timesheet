@@ -18,10 +18,12 @@ import Paper from '@material-ui/core/Paper';
 import 'react-day-picker/lib/style.css';
 import dateFnsFormat from 'date-fns/format';
 import { getMonth, getDate, format, addDays,parseISO, startOfWeek } from 'date-fns';
-import WeekSelection from './WeekSelection'
-import TaskSelection from './TaskSelection'
+//import WeekSelection from './WeekSelection'
+//import TaskSelection from './TaskSelection'
 import styles from './basicTable.module.css'
 import AlertMessage from '../components/AlertMessage';
+import TaskSelection from "./taskSelection";
+import WeekSelection from "./weekSelection";
 
 const useStyles = makeStyles({
   table: {
@@ -102,7 +104,7 @@ export default function BasicTable() {
           // if entered value is empty string "", omits it
           return finalValue;
         }
-        return finalValue + parseInt(value);
+        return finalValue + parseInt(value as string);
       }, 0);
     }
 
