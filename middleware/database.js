@@ -1,8 +1,8 @@
 import { MongoClient } from 'mongodb';
 import nextConnect from 'next-connect';
 
-const client = new MongoClient('mongodb+srv://timesheet:admin@cluster0.nnmxims.mongodb.net/?retryWrites=true&w=majority', {
-//const client = new MongoClient('mongodb://localhost:27017', { PWD: timesheet/admin
+//const client = new MongoClient('mongodb+srv://timesheet:admin@cluster0.nnmxims.mongodb.net/?retryWrites=true&w=majority', {
+const client = new MongoClient('mongodb://localhost:27017', { //PWD: timesheet/admin
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
