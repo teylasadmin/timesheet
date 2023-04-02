@@ -26,7 +26,7 @@ const Layout = props => {
 
       <Header navButtons={navButtons} />
       <main>
-        <div className="container">{props.children}</div>
+        <div className="container" style={{marginBottom:'50px'}}>{props.children}</div>
       </main>
      <Footer/>
     </div>

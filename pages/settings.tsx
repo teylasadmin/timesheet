@@ -42,8 +42,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   button: {
-    marginTop: theme.spacing(3),
+   // marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
 }));
 
@@ -73,7 +74,7 @@ export default function Settings() {
 
   const handleSaveProject = async event => {
      event.preventDefault()
-
+    debugger;
      const res = await fetch('http://localhost:3000/api/projects', {
        method: 'post',
        headers: {
@@ -126,9 +127,9 @@ export default function Settings() {
             ) : (
               <>
                 {getStepContent(activeStep, project, setProject)}
-                <div className={classes.buttons}>
+                <div className={classes.buttons} style={{padding:'10px', marginTop:'10px'}}>
                   {activeStep !== 0 && (
-                    <Button variant="contained" onClick={handleBack} className={classes.button}>
+                    <Button variant="contained" onClick={handleBack} className={classes.button} >
                       Back
                     </Button>
                   )}

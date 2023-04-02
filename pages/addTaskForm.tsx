@@ -12,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import StepCounter from './global/counter'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,14 +26,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddTaskForm(props) {
-   const classes = useStyles();
+  const classes = useStyles();
 
   const {taskList} = props.project;
 
-  const [newTask, setNewTask] = useState({id:1, taskName:'', taskTotalHours:'',projectId:'4321',taskDescription:''});
+  const [newTask, setNewTask] = useState({id:StepCounter.counter++, taskName:'', taskTotalHours:'',projectId:StepCounter.projectId++,taskDescription:''});
 
   const handleFieldChange = (event) => {
      const alphanumeric = /^[0-9a-zA-Z\s]+$|^$/
+     debugger
      const values = {...newTask};
 
      if (event.target.name === "taskName" && alphanumeric.test(event.target.value)) {
@@ -52,6 +54,8 @@ export default function AddTaskForm(props) {
     const handleAddTask = () => {
       const values = [...taskList];
       values.push(newTask);
+
+      setNewTask({id:StepCounter.counter, taskName:'', taskTotalHours:'',projectId:StepCounter.projectId,taskDescription:''})
       const updatedProject = {...props.project, taskList: values}
       props.updateFunction(updatedProject)
     };
@@ -60,6 +64,7 @@ export default function AddTaskForm(props) {
 
     const handleRemoveTask = index => {
       const values = [...taskList]; // cloning an array
+      debugger;
       values.splice(index, 1);
       //setTasks(values); // setTasks is asynchronous !!! and it doesn't take effect
       const updatedProject = {...props.project, taskList: values}
