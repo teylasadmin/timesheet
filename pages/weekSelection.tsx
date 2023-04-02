@@ -47,7 +47,7 @@ export default function WeekSelection(props) {
 
     return (
         <div>
-            <Button variant="contained" color="primary" size="small" endIcon={<DateRangeIcon/>} onClick={handleOpen}>
+            <Button variant="contained" style={{maxWidth: '150px', minWidth: '150px'}} color="primary" size="small" endIcon={<DateRangeIcon/>} onClick={handleOpen}>
                 Select week
             </Button>
 
